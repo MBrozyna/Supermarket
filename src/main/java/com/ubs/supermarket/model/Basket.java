@@ -1,4 +1,4 @@
-package model;
+package com.ubs.supermarket.model;
 
 import java.util.List;
 

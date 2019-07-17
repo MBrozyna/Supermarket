@@ -1,25 +1,22 @@
-package service;
+package com.ubs.supermarket.service;
 
-import controller.Application;
-import model.Product2;
-import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import static org.junit.Assert.assertTrue;
 
 @RunWith(SpringRunner.class)
-@SpringBootTest(classes = Application.class)
+@SpringBootTest(classes = com.ubs.supermarket.Application.class)
 public class BasketServiceTest {
 
     @Autowired
     BasketServiceImpl basketService;
 
     @Test
-    public void emptyOptionalShouldBeReturnedIfNoElementExist(){
-
-        Assert.assertTrue(basketService != null);
+    public void basketServiceShouldBeAppliedWithAllProducts(){
+        assertTrue(basketService.productsAvailable.size()>0);
     }
 }

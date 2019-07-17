@@ -1,7 +1,7 @@
-package service;
+package com.ubs.supermarket.service;
 
-import model.Basket;
-import model.Product;
+import com.ubs.supermarket.model.Basket;
+import com.ubs.supermarket.model.Product;
 import java.util.List;
 
 public interface BasketService {

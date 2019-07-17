@@ -1,20 +1,21 @@
-package service;
+package com.ubs.supermarket.service;
 
 
-import model.Basket;
-import model.Product;
-import org.springframework.stereotype.Component;
+import com.ubs.supermarket.model.Basket;
+import com.ubs.supermarket.model.Product;
+import org.springframework.stereotype.Service;
+
 import java.util.ArrayList;
 import java.util.List;
 
-@Component
+@Service("basketService")
 public class BasketServiceImpl implements BasketService{
 
     List<Basket> cart;
     List<Product> productsAvailable;
 
     public BasketServiceImpl() {
-
+        this.productsAvailable = new ArrayList<>();
         this.cart = new ArrayList<>();
         try {
             applyAvailableProducts();
