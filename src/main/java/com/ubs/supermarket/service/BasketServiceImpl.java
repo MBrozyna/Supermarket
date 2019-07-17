@@ -28,9 +28,12 @@ public class BasketServiceImpl implements BasketService{
     }
 
     @Override
-    public Basket add(Product product, Integer basketId) {
-
-        return null;
+    public Basket add(Product product, Integer basketId) throws Exception {
+        if(cart.containsKey(basketId)) {
+            cart.get(basketId).getProductList().add(product);
+            return cart.get(basketId);
+        }
+        throw new Exception("No such basket with id: " + basketId);
     }
 
     @Override

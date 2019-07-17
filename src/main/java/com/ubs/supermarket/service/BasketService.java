@@ -7,7 +7,7 @@ import java.util.Optional;
 
 public interface BasketService {
 
-    Basket add(Product product, Integer basketId);
+    Basket add(Product product, Integer basketId) throws Exception;
 
     Basket remove(Product product);
 
