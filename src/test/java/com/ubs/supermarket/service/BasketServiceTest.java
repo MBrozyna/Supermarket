@@ -6,6 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import java.util.Optional;
+
 import static org.junit.Assert.assertTrue;
 
 @RunWith(SpringRunner.class)
@@ -17,6 +19,11 @@ public class BasketServiceTest {
 
     @Test
     public void basketServiceShouldBeAppliedWithAllProducts(){
-        assertTrue(basketService.productsAvailable.size()>0);
+        assertTrue(basketService.getProductsAvailable().size()>0);
+    }
+
+    @Test
+    public void getAllProductsShouldReturnEmptyOptionalIfEmpty(){
+        assertTrue(basketService.getAllProducts(0).equals(Optional.empty()));
     }
 }

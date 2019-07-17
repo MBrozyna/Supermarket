@@ -7,27 +7,29 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
+import java.util.concurrent.ConcurrentHashMap;
 
 @Service("basketService")
 public class BasketServiceImpl implements BasketService{
 
-    List<Basket> cart;
-    List<Product> productsAvailable;
+    ConcurrentHashMap<Integer, Basket> cart;
+    private List<Product> productsAvailable;
 
     public BasketServiceImpl() {
         this.productsAvailable = new ArrayList<>();
-        this.cart = new ArrayList<>();
+        this.cart = new ConcurrentHashMap<>();
         try {
             applyAvailableProducts();
         } catch (Exception e) {
             e.printStackTrace();
             e.getMessage();
         }
-
     }
 
     @Override
-    public Basket add(Product product) {
+    public Basket add(Product product, Integer basketId) {
+
         return null;
     }
 
@@ -42,8 +44,8 @@ public class BasketServiceImpl implements BasketService{
     }
 
     @Override
-    public List<Product> getAllProducts(Basket basket) {
-        return null;
+    public Optional<List<Product>> getAllProducts(Integer basketId) {
+        return cart.containsKey(basketId)?Optional.ofNullable(cart.get(basketId)).map(o -> productsAvailable): Optional.empty();
     }
 
 
@@ -58,5 +60,9 @@ public class BasketServiceImpl implements BasketService{
             return this.productsAvailable;
         }
         throw new Exception("Product list apply is not available if already exist.");
+    }
+
+    protected List<Product> getProductsAvailable() {
+        return productsAvailable;
     }
 }
